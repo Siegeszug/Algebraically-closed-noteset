@@ -1,0 +1,133 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 245} \hfill \textbf{Genevieve Walsh} \\
+\textbf{Kyle Dituro} \hfill \textbf{January 18, 2023}\hrule
+\vspace{.2in}
+
+\section{Categories}
+The unifying framework for our study of algebra will be that of categories. So far as test material goes, categories will likely not be tested
+
+Roughly, a \textit{category} is a class of objects with some notion of morphisms between them.
+
+\begin{exa}
+  Sets with functions of sets, groups with group homomorphisms.
+\end{exa}
+
+\begin{df}
+  A  \textit{Category} will be denoted \(\mathcal{C}\)
+  \begin{itemize}
+  \item \(\mathrm{Obj}(\mathcal{C})\) is the collection of objects,
+  \item For every pair \((A, B)\), \(A, B \in \mathcal{C}\) (via abuse of notation)
+  \item A set \(\mathrm{Hom}_\mathcal{C}(A, B)\).
+  \end{itemize}
+
+  Satisfying
+  \begin{itemize}
+  \item \(\forall A \in \mathrm{Obj}(\mathcal{C})\), \(\exists 1_A \in \mathrm{Hom}_{\mathcal{C}}(A, A)\)
+  \item \(\forall f, g\), \(f \in \mathrm{Hom}_\mathcal{C}(A,B)\), \(g \in \mathrm{Hom}_\mathcal{C}(B, C)\), \(\exists ggf \in \mathrm{Hom}_\mathcal{C}(A,C)\).
+  \item \(f \in \mathrm{Hom}(A, B)\), \(g \in \mathrm{Hom}(B,C)\), \(h \in \mathrm{Hom}(C, D)\), then \((hg)f = h(gf)\)
+  \item Composition plays well with the identity
+
+    \(\forall f \in \mathrm{Hom}(A, B)\), \(f1_A = f, 1_Bf = f\)
+  \item And ``non-craziness'' \(\mathrm{Hom}_\mathcal{C}(A,B) \cap \mathrm{Hom}_\mathcal{C}(E, F) = \emptyset\) unless \(A = E\), \(B = F\).
+  \end{itemize}
+\end{df}
+
+As a matter of vocabulary, we will say \(f \in \mathrm{Hom}_\mathcal{C}(A, A)\) is called an \textit{endomorphism} and the collection of all endomorphisms will be denoted \(\mathrm{End}_\mathcal{C}(A)\), and moreover for \(f \in \mathrm{Hom}_\mathcal{C}(A,B)\)  we will often write \(f: A \to B\) as usual as a slight abuse of notation.
+
+\begin{exa}
+  SET is a category where \(\mathrm{Obj}(\mathrm{SET})\) is sets, and \(\mathrm{Hom}_\mathrm{SET}(A, B) = B^A\).
+\end{exa}
+\begin{exa}
+  Also real vector spaces and linear maps is another category
+\end{exa}
+Now suppose we have \(\mathcal{C}\), \(A \in \mathrm{Obj}(\mathcal{C})\). We define a new category \(\mathcal{C}_A\).
+
+\begin{df}
+  For a category \(\mathcal{C}\), define \(\mathcal{C}_A\) as
+  \begin{itemize}
+  \item \(\mathrm{Obj}(\mathcal{C}_A) = Z\), all \(f \in \mathrm{Hom}(Z, A)\) for \(Z \mathrm{Obj}(\mathcal{C})\)
+  \item \(\mathrm{Hom}_{\mathcal{C}_A} = \opn \sigma \in \mathrm{Hom}_\mathcal{C}(Z, X) \stbar f = g\sigma\cls\).
+  \end{itemize}
+\end{df}
+It is fairly routine to check that the diagram
+
+\begin{center}
+  \begin{tikzcd}
+    Z \arrow[dr, "f_1"] \arrow[r, "\sigma"]& X  \arrow[d, "f_2"] \arrow[r, "\beta"]& Y \arrow[dl, "f_3"]\\
+    & A & 
+  \end{tikzcd}
+\end{center}
+
+commutes, which checks composition.
+
+As usual, we will call \(f \in \mathrm{Hom}(A, B)\) an \textit{isomorphism} of categories if it has an inverse.
+
+\begin{prop}
+  An inverse of an isomorphism is unique.
+\end{prop}
+\begin{proof}
+  \begin{align*}
+    f \in \mathrm{Hom}_\mathcal{C}(A, B) \quad g_1, g_2 \in \mathrm{Hom}_\mathcal{C}(B, A). \\
+    g_1 = g_11_B = g_1(fg_2) = (g_1f)g_2 = 1_Bg_2 = g_2
+  \end{align*}
+\end{proof}
+
+Some other basic properties of isomorphisms:
+
+\begin{itemize}
+\item the identity is an isomorphism
+\item \(f\) is an isomorphism iff \(f\1\) is as well
+\item if \(f\) and \(g\) are isomorphisms with compatible domain and codomains, then \(gf\) is also an isomorphism.
+\end{itemize}
+
+Now we can discuss automorphisms. We denote the collection of all automorphisms of an object \(A\) as \(\mathrm{Aut}_\mathcal{C}(A) \subseteq \mathrm{End}_\mathcal{C}(A)\), and we have that
+\begin{itemize}
+\item Identity is just \(1_A\)
+\item associative multiplication
+\item and every element has an inverse.
+\end{itemize}
+Therefore, this is a group.
+
+\subsection{Universal Properties}
+Suppose that we have some category \(\mathcal{C}\). Then say that \(I \in \mathrm{Obj}(C)\) is \textit{initial} in \(\mathcal{C}\) if, for every object \(K \in \mathrm{Obj}(C)\), \(\exists ! f: I \to K\). Likewise, we define an object \(F\) to be \textit{final} in \(\mathcal{C}\) us \(\forall K \in \mathrm{Obj}(C)\), \(\exists ! f \in \mathrm{Hom}(K, F), f: K \to F\).
+
+\begin{exa}
+  All sets with one element are final objects in SET, and the empty set is the only initial objects.
+
+  Note that here all initial objects are isomorphic, and likewise with all final objects. This is true in general, and is trivial to prove.
+\end{exa}
+
+Call an object \textit{terminal} if it is either an initial or a final object.
+
+\begin{df}
+  A construction is a \textit{universal property} if it is a terminal object in some category. Often times the category is unsaid.
+\end{df}
+
+\subsection{Quotients}
+
+Denote quotients by an equivalence relation as normal. Then the quotient \(A / \sim\) is universal with respect to the property of mapping \(A\) to some set where equivalent elements have the same image. Obviously, there is a natural map \(A \xlongrightarrow{\pi} A / \sim\) mapping elements of \(A\) to it's equivalence class.
+
+Lisewise \(\mathcal{C}_\sim\) is the category of objects \(f \in \mathrm{Hom}_\mathrm{SET}(A, Z)\) where \(a \sim a\prime \implies f(a) = f(a\prime), \forall Z \in \mathrm{Obj}(\mathrm{SET})\)  with morphisms \(\sigma \in \mathrm{Hom}(Z_1, Z_2)\) such that \(\sigma f_2 = f_1\). Then the claim is that \(\pi\) as defined before is initial in this category.
+
+See that \(\exists !\) morphism \(\pi \to f\),
+
+\begin{center}
+  \begin{tikzcd}
+    & A \arrow[dl, "\pi"] \arrow[dr, "f"]& \\
+    A / \sim  \arrow[rr, "\sigma"] & & Z
+  \end{tikzcd}
+\end{center}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
