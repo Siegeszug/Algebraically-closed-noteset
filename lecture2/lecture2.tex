@@ -110,6 +110,47 @@ Where \(\sigma(z) = (f(z), g(z))\). Here it is clear that the product map is uni
   \begin{proof}
     Trivial exercise in number theory.
   \end{proof}
+
+  \begin{cor}
+    \begin{align*}
+      g^N \Leftrightarrow N \text{ is a multiple of } |g|.
+    \end{align*}
+  \end{cor}
+
+  \begin{df}
+    \(|G|\) is the number of elements in \(G\), potentially \(\infty\).
+  \end{df}
+
+  \begin{prop}
+    If \(gh = hg\) then \(|gh|\) divides \(\mathrm{lcm}(|g|, |h|)\)
+  \end{prop}
+  \begin{proof}
+    Evaluation.
+  \end{proof}
+
+  \begin{exa}
+    The Symmetric group \(S_n\) with order \(n!\). Notice that permutational composition goes in lexicagraphic order, which stinks. Also obviously \(S_n\) is not generally (in fact hardly ever) abelian. If so prompted, we can investigate the structure of \(S_3\), and write down a presentation of 6 generators.
+  \end{exa}
+
+  \begin{exa}
+    The Dihedral groups \(D_n\) are the groups that are isometries of a regular \(n\)-sided polygon\footnote{\url{https://www.youtube.com/watch?v=fV7zFzhqYps}} in \(\R^2\).
+  \end{exa}
+
+  \begin{exa}
+    Also of course we have the cyclic groups \(\Z / n\Z\) which we will write as cosets under addition of cosets.
+
+    Likewise we can define
+    \(\left( \Z / p\Z \right)^*\), the multiplicative group mod \(p\). This is a group because trust me. Notice that it's kinda hard to find generators for this in general. It is sometimes cyclic.
+  \end{exa}
+
+  Notice that groups together with group homomorphisms form a category called GRP.
+
+  \begin{center}
+    \begin{tikzcd}
+      G \times G \arrow[d, "\cdot_G"] \arrow[r, "\phi \times \phi"] & H \times H \arrow[d, "\cdot_H"] \\
+      G \arrow[r, "\phi"] & H
+    \end{tikzcd}
+  \end{center}
 \end{document}
 %%% Local Variables:
 %%% mode: latex
