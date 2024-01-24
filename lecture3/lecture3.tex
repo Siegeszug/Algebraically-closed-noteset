@@ -3,7 +3,7 @@
 \graphicspath{{./img/}}
 
 \begin{document}
-\noindent \textbf{Math 245} \hfill \textbf{Genivive Walsh} \\
+\noindent \textbf{Math 245} \hfill \textbf{Genevieve Walsh } \\
 \textbf{Kyle Dituro} \hfill \textbf{\today}\hrule
 \vspace{.2in}
 
@@ -29,6 +29,85 @@ This defined \(F(A)\) up to isomorphism, but why do they exist? In particular, d
 
 \begin{fact}
   This is a group, and this is easy to check for yourself.
+\end{fact}
+
+Then define the map \(j:A \to F(A)\) as the map that takes a letter as a set object to a letter as a word in the group \(F(A)\). Then the homomorphisms \(\sigma\) are defined letterwise in order to force the homomorphism condition.
+
+In other words, just take \(abc \xmapsto{\sigma} j(a)j(b)j(c)\).
+
+\section{Subgroups}
+
+\begin{df}
+  A \textit{Subgroup} \(H\) of a group \(G\) (denoted by \(H \leq G\)) is a subset \(H \subseteq G\) such that \(H\) is a group inheriting the group operation of \(G\).
+\end{df}
+
+\begin{lm}
+  \(H \subseteq G\) is a subgroup iff \(\forall a, b \in H,\ ab\1 \in H\).
+\end{lm}
+\begin{proof}
+  Trivially verified.
+\end{proof}
+
+\begin{exa}
+  The image of a group homomorphism \(\phi\) is a subgroup of the domain.
+\end{exa}
+
+Now we can define a slightly more interesting object.
+
+\begin{df}
+  A subgroup \(H \leq G\) is called \textrm{normal} if \(g\in G\) \(gHg\1 \in H\)
+\end{df}
+
+\begin{exa}
+  \(\ker \phi\) is a normal subgroup of the domain of \(\phi\) since \(\forall h \in H, g \in G\), \(\phi(g)\phi(h)\phi(g)\1 = \phi(g)\phi(g)\1 = e\)
+\end{exa}
+
+\begin{clm}
+  All normal subgroups are the kernel of some homomorphism.
+\end{clm}
+\begin{proof}
+  First notice that the left cosets of some normal subgroup \(K \trianglelefteq G\) partition \(G\). Now we claim that this gives us a well-defined group operation. This can be seen by noticing that
+
+  \begin{align*}
+    gK \cdot hK &= ghK \\
+    gk_gK \cdot hk_hK &= gk_ghk_hK\\
+                &= ghk_g\prime k_hK \\
+                &=ghK.  
+  \end{align*}
+  when \(K\) is normal, (where \(kh = hk\prime\) for \(k\prime \in K\)).
+
+  Now we denote this group \(G / K\), with \(g \xmapsto{\pi} gK\).
+\end{proof}
+
+Then as a corollary of this, we get the following:
+
+\begin{cor}
+  If \(\phi: G \to G\prime\) is onto, then
+  \begin{align*}
+    G / \ker{\phi} \cong G\prime
+  \end{align*}
+\end{cor}
+
+And moreover,
+\begin{thm}[LaGrange's theorem]
+  The order of any subgroup divides \(|G|\). in other words:
+  \(|G| = [G:H]|H|\).
+\end{thm}
+
+Quotient groups allow one to say that if \(\phi: G \to G\prime\):
+
+\begin{center}
+  \begin{tikzcd}
+    G \arrow[r, "\pi"] \arrow[rr, bend right=25, "\phi"] & G/\ker \phi \cong \textrm{Im} \phi \arrow[r, hookrightarrow]& G\prime
+  \end{tikzcd}
+\end{center}
+
+\section{Group Actions}
+
+The \textit{action} of a group on a set is a homomorphism \[\sigma: G \to \mathrm{Aut}(A)\]. Namely, a left action \(\rho: G \times A \to A\) is defined such that \(\rho(gh, a) = \rho(g, \rho(h, a))\).
+
+\begin{fact}
+  Every group acts faithfully on some set. Therefore it is a subgroup of a permutation group. Yes, we are just stating Cayley's theorem as a fact, eat shit idiot.
 \end{fact}
 \end{document}
 %%% Local Variables:
