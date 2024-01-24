@@ -1,0 +1,42 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 245} \hfill \textbf{Genivive Walsh} \\
+\textbf{Kyle Dituro} \hfill \textbf{\today}\hrule
+\vspace{.2in}
+
+We examine the free group via the set that it's defined over. In the language of categories \(\mathscr{F}^A\) is the free categoy of \(A\), where the objects are like \(: A \to G\), and the morphisms are group homomorphisms \(\sigma\) like
+
+\begin{center}
+  \begin{tikzcd}
+    A \arrow[r, "j_1"] \arrow[dr, "j_2"]& G \arrow[d, "\sigma"] \\
+    & H
+  \end{tikzcd}
+\end{center}
+
+Now we define
+\begin{df}
+  \(F(A)\) is an initial object in \(\mathscr{F}^A\).
+\end{df}
+
+\begin{clm}
+  The maps \(\opn a \cls \to \langle a \rangle\) are initial in the category.
+\end{clm}
+
+This defined \(F(A)\) up to isomorphism, but why do they exist? In particular, define the resolution of the first cancelation relation among the words by \(r: W(A) \to W(A)\), and define moreover \(R:W(A) \to W(A)\) by \(w \longmapsto{R} r^{\lfloor n/2 \rfloor}(w)\). Then \(F(A) = \left(R\left(W\left(A\right)\right), \ \cdot \right)\), where \(\cdot\) denotes concatonation.
+
+\begin{fact}
+  This is a group, and this is easy to check for yourself.
+\end{fact}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
