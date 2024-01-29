@@ -1,3 +1,4 @@
 * An Algebraically Closed Noteset
 
 This noteset was typed by Kyle Dituro in the Spring semester of 2024 at Tufts university from Math 245 taught by Genevieve Walsh.
+

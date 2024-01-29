@@ -1,0 +1,277 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 245} \hfill \textbf{Genevieve Walsh} \\
+\textbf{Kyle Dituro} \hfill \textbf{January 29\tht, 2024}\hrule
+\vspace{.2in}
+
+\section{Group Presentations}
+We start out with an important (somewhat trivial) fact:
+
+\begin{fact}
+  Every group is the quotient of a free group.
+\end{fact}
+
+If \(G\) is a group, then we can surject
+\begin{align*}
+  F(G) \twoheadrightarrow G \\
+  g_1g_2g_3 \longmapsto g_1 \times g_2 \times g_3.
+\end{align*}
+This sucks. We can do better. Often times, there exists a smaller set \(A \subseteq G\) such that
+
+\begin{align*}
+  F(A) \twoheadrightarrow G \\
+  a \longmapsto a \\
+  a_1a_2a_3 \longmapsto a_1 \times a_2 \times a_3.
+\end{align*}
+
+If this is a surjection, \(A\) is a set of generators, and if \(A\) is finite, then \(G\) is \textit{finitely generated.}
+
+Now let 
+\begin{center}
+  \begin{tikzcd}
+    R \rar & F(A) \rar[twoheadrightarrow] & G
+  \end{tikzcd}
+\end{center}
+Be exact at \(F(A)\), then \(R\) is a \textit{normal} subgroup.
+
+So let \(\mathcal{R}\) be the set of words such that \(\langle\langle \mathcal{R}\rangle\rangle\)
+
+So we define \(B \subseteq G\) to be
+\begin{align*}
+  \langle\langle B \rangle\rangle_G &:= \bigcap N : N \trianglelefteq G \mathrm{\ and\ } B \subseteq N \\
+  \langle\langle \mathcal{R} \rangle\rangle &= \text{The smallest normal subgroup that contains } \mathcal{R}.
+\end{align*}
+
+\begin{exa}
+  Okay, so, like, don't worry about the fact that we haven't defined presentations yet.
+
+  \begin{align*}
+    D_{10} = \left\langle r,s \stbar r^5 = 1, s^2 = 1, sr = r^4s \right\rangle
+  \end{align*}
+
+  Being the dihedral group on 10 elements, and
+
+  \begin{center}
+    \begin{tikzcd}
+      \langle\langle r^5, s^2, srsr \rangle\rangle \rar & F(r,s) \rar[twoheadrightarrow] & D_{10}
+    \end{tikzcd}
+  \end{center}
+\end{exa}
+
+\begin{df}
+  \(G\) has a presentation
+  \begin{align*}
+    \left\langle A \stbar \mathcal{R} \right\rangle
+  \end{align*}
+  if \(F(A) \twoheadrightarrow G\) is a surjection and \(\langle\langle \mathcal{R} \rangle\rangle_{F(A)}\) is the kernel.
+
+  If the kernel \(\langle\langle \mathcal{R} \rangle\rangle\) is written with \(\mathcal{R}\) a finite list of words and \(A\) is finite, then \(G = \left\langle A \stbar \mathcal{R}\right\rangle\)
+\end{df}
+
+If \(p\) is prime and \(|G| = p\), what is \(G\)? \(\exists x: x^p = 1\), and \(G = \langle x \vert x^p = 1 \rangle = \Z / p\Z\)
+
+\begin{thm}[Cauchy's Theorem.]
+  If \(p \mid |G|\) and \(p\) is prime, then there exists an element of order \(p\) in \(G\).
+\end{thm}
+\section{Group Actions}
+Let \(A\) be a set, and \(G\) be a group. Then take a homomorphism \(G \to \mathrm{Aut}(A)\). Every group is a subgroup of a permutaton gp. \(G\) acts on \(G\) by left multiplication.
+
+\begin{df}
+  \(G \curvearrowright A\) is \textit{transitive} if \(\forall a, b \in A\), \(\exists g \in G\) such that \(g(a) = b\).
+\end{df}
+
+\begin{exa}
+  \(G \curvearrowright G\) by conjugation is \textbf{not} a transitive action... especially clear in abelian groups. Notice that \(gag\1 = a\) in any abelian group, so the action is not transitive.
+\end{exa}
+
+\begin{df}
+  The \textit{orbit} of \(a \in A\) under \(G\) is the set 
+  \begin{align*}
+    O_G(a) = \opn ga \stbar g\in G \cls \subseteq A.
+  \end{align*}
+\end{df}
+
+Orbits partition the set \(A\).
+
+\begin{df}
+  The \textit{stabilizer subgroup} of \(a \in A\) is
+
+  \begin{align*}
+    \mathrm{Stab}_G(a) = \opn g \in G \stbar g(a) = a \cls \leq G.
+  \end{align*}
+\end{df}
+
+We make a brief return to categories to make a few statements.
+
+Let \(G\) be a group, call sets with a group action \(G\)-sets. Then consider the category whose objects are \((\rho, A)\), \(\rho: G \times A \to A\) such that
+
+
+\begin{center}
+  \begin{tikzcd}
+    G \times A_1 \dar{\rho_1} \rar{(\text{Id}, \phi)} & G \times A_2 \dar{\rho_2} \\
+    A_1 \rar{\phi} & A_2
+  \end{tikzcd}
+\end{center}
+commutes. Such a \(\phi\) is called a \(G\)-equivariant function  if \(\forall g \in G\), \(g\phi(a) = \phi(ga)\).
+
+Two \(G\) sets are called isomorphic if there is an equivariant bijection.
+
+\begin{prop}
+  Every transitive left action of \(G\) on a set is isomorphic to
+
+  \begin{align*}
+    \rho G \times G/H \to G/H \\
+    \rho(g_1, g_2H) = g_1g_2H,
+  \end{align*}
+  Where \(H\) is the stabilizer of any \(a \in A\).
+\end{prop}
+\begin{proof}
+  \(G \curvearrowright A\) transitively. \(H = \mathrm{Stab}_G(a)\).
+
+  Then let
+  \begin{align*}
+    \phi: G/\mathrm{Stab}(a) \to A \\
+    \phi: gH \to ga.
+  \end{align*}
+
+  We claim that \(\phi\) is a \(G\)-equivariant bijection, but first that it is well defined.
+
+  Suppose that \(g_1H = g_2H\). then \(g_2\1g_1H = H\), so \(g_2\1g_1 \in H = \mathrm{Stab}(a)\).
+
+  Then \(g_2(a) = g_2(g_2\1g_1a) = g_1a\). \partdone
+
+  Then we aught show it's a bijection.
+
+  Well \(a\prime \in A \Rightarrow a\prime = ga\) for some \(g \in G\) by the action of \(G\) being transitive. so take
+
+  \begin{align*}
+    a\prime \longrightarrow gH.
+  \end{align*}
+
+  if \(a\prime = g_1a\) and \(a\prime = g_2a\), then
+
+  \begin{align*}
+    g_1a = g_2a &\Rightarrow g_2\1g_1(a) = a \\
+                & g_2\1g_1 \in H = \mathrm{Stab}(a) \\
+                &g_1H = g_2H.
+  \end{align*} \partdone
+
+  Then also \(\phi\) is equivariant by definition. Namely
+
+  \begin{align*}
+    \phi(g\prime g H) = g\prime g(a) \\
+    g\prime \phi(gH) = g\prime(ga) = g\prime g a.
+  \end{align*}
+\end{proof}
+
+Now we introduce a thoerem that is incredibly useful for counting things in groups.
+\begin{cor}[The Orbit-Stabilizer Theorem]
+  Let \(G \curvearrowright A\).
+
+  If \(O_a\) is the orbit of \(a \in A\), then
+
+  \begin{align*}
+    |O_a|\cdot |\mathrm{Stab}_G(a)| = |G|
+  \end{align*}
+\end{cor}
+
+\begin{cor}
+  \(|O_a|\) divides \(|G|\)
+\end{cor}
+
+\begin{proof}
+  \(G\) acts transitibely on \(O_a\) for any \(a\) by definition. So
+
+  \begin{align*}
+    \left\vert G/\mathrm{Stab}_G(a)\right\vert = |O|
+  \end{align*}
+
+  Notice that the left hand side is the number of left cosets. In other words,
+  \begin{align*}
+    |O_a| = [G:\mathrm{Stab}_G(a)]
+  \end{align*}
+  so
+  \begin{align*}
+    |O_a| \cdot |\mathrm{Stab}_G(a)| = |G|
+  \end{align*}
+\end{proof}
+
+Now we introduce a small theorem that is not so difficult to prove.
+
+\begin{thm}
+  If \(G \curvearrowright A\), \(g(a) = b\), then
+  \begin{align*}
+    \mathrm{Stab}_G(b) = g\mathrm{Stab}_G(a)g\1.
+  \end{align*}
+  In other words 
+\end{thm}
+
+\begin{proof} \textbf{Admitted.} I dunno, just work this diagram and work by conjugation. You should be able to track elements via conjugatoin to get both containments.
+  \begin{center}
+    \begin{tikzcd}
+      a \rar[bend left]{g} \arrow[loop left] & b \arrow[loop right]
+    \end{tikzcd}
+  \end{center}
+\end{proof}
+
+Therefore, these stabilizers are the same size.
+
+\begin{prop}
+  Let \(S\) be a finite set, \(G \curvearrowright S\). Then
+  \begin{align*}
+    |S| = \sum_{a \in A} [G: G_a], \quad G_a = \mathrm{Stab}(a)
+  \end{align*}
+  Where \(A\) contains exactly one element from from each orbit.
+\end{prop}
+\begin{proof}
+  The orbits partition \(S\).
+
+  \begin{align*}
+    |S| = \sum_{a \in A}|O|, \quad |G| = |O| \cdot |\mathrm{Stab}(a)|
+  \end{align*}
+
+  Now let's pull out the things with one orbit.
+
+  \begin{align*}
+    Z = \text{Number of elements with one on element in it's orbit} \\
+    Z = \opn a \stbar [G:G_a] = 1 \cls. \\
+    |S| = |Z| + \sum_{a \in A}[G: G_a]
+  \end{align*}
+  Where \(A\) has one element from each non-trivial orbit. When the action is conjugation...
+
+  Let \(Z(G)\) denote the center of \(G\), namely
+
+  \begin{align*}
+    Z(G) = \opn g \in G: ga = ag\ \forall a \in G \cls \\
+    Z(a) = \opn g \in G \stbar ga = ag \cls
+  \end{align*}
+
+  Then the center is a subgroup.
+
+  \begin{align*}
+    |G| = |Z(G)| + \sum_{a \in A-1}[G:Z(a)]
+  \end{align*}
+  Where \(A\) contains exactly one element from each nontrivial orbit.
+\end{proof}
+In particular,
+
+\begin{align*}
+  |G| = \sum a_i \quad \text{where each } a_i \mid |G|
+\end{align*}
+\begin{exa}
+  When \(|G| = 6\), we only have the options \(6 = 6\), and \(6 = 1 + 2 + 3\), and in particular,
+  \(p = p\) where \(p\) is prime.
+\end{exa}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
