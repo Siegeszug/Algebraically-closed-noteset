@@ -1,0 +1,236 @@
+\documentclass[12pt, twosided]{article}
+ \input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 245} \hfill \textbf{Genevieve Walsh} \\
+\textbf{Kyle Dituro} \hfill \textbf{Due January 29\tht, 2024}\hrule
+\vspace{.2in}
+\begin{center}
+  \huge Assignment 1
+\end{center}
+\begin{enumerate}
+\item
+  \begin{itemize}
+  \item [\(\mathcal{C}^A\):]
+    \begin{itemize}
+    \item The objects are things of the form \(f: A \to Z\)
+    \item Morphisms between objects are things like \(\sigma \in \mathrm{Hom}_\mathcal{C} (Z_1,Z_2)\) that make
+      \begin{center}
+        \begin{tikzcd}
+          & A \drar{f_2} & \\
+          Z_1 \urar[leftarrow]{f_1}\arrow[rr, dashed, "\sigma"] & & Z_2
+        \end{tikzcd}
+      \end{center}
+      commute.
+    \item Let two morphisms \(\phi \in \mathrm{Hom}(Z_1, Z_2)\) and \(\psi \in \mathrm{Hom}(Z_2, Z_3)\) be given. Then we have
+      \begin{center}
+        \begin{tikzcd}
+          & A \dar{f_2} \drar{f_3}& \\
+          Z_1 \urar[leftarrow]{f_1}& Z_2 \lar[leftarrow]{\phi}& \lar[leftarrow]{\psi} Z_3
+        \end{tikzcd}
+      \end{center}
+      and we know that the left triangle and the right triangle commute. But then \(f_3 = \psi \circ f_2\), and \(f_2 = \phi \circ f_1\), so \(f_3 = \psi \circ \phi \circ f_1\), which is precisely what we wanted.
+    \item The identity is the identity on \(Z\) inherited from \(\mathcal{C}\), namely the morphism \(\mathrm{id}_Z \in \mathrm{Hom}_\mathcal{C}(Z, Z)\) such that
+      \begin{center}
+        \begin{tikzcd}
+          & A \drar{f} & \\
+          Z \urar[leftarrow]{f} \arrow[rr, "\text{id}_Z"] & & Z
+        \end{tikzcd}
+      \end{center}
+      commutes. Notice that the identity here obeys the comp. rule on both sides. Namely, the diagrams
+      \begin{center}
+        \begin{tikzcd}
+          & A \dar{z} \drar{g}& \\
+          Z \urar[leftarrow]{z}& Z \lar[leftarrow]{\text{id}_Z}& \lar[leftarrow]{\psi} G
+        \end{tikzcd}
+        \begin{tikzcd}
+          & A \dar{z} \drar{z}& \\
+          F \urar[leftarrow]{f}& Z \lar[leftarrow]{\phi} & \lar[leftarrow]{\text{id}_Z} Z
+        \end{tikzcd}
+      \end{center}
+      Both commute and then also \(\mathrm{id_Z} \circ \phi = \phi\) and \(\psi \circ \mathrm{id}_Z = \psi\).
+    \end{itemize}
+  \item [\(\mathcal{C}_{A,B}\):]
+    \begin{itemize}
+    \item The Objects are things that look like
+      \begin{center}
+        \begin{tikzcd}
+          & A \\
+          Z \arrow[ur, "f"] \drar{g} & \\
+          & B
+        \end{tikzcd}
+      \end{center}
+    \item Morphisms between objects are maps \(\sigma \in \mathrm{Hom}_\mathcal{C}(Z_1, Z_2)\) such that the diagram
+      \begin{center}
+        \begin{tikzcd}[row sep = tiny]
+          & Z_1 \arrow[dd, dashed, "\sigma"] \drar{g_1} \dlar{f_1}& \\
+          A & & B \\
+          & Z_2 \urar{g_2} \ular{f_2}& 
+        \end{tikzcd}
+      \end{center}
+      commutes. Notice that the terminal objects in this category are precisely products.
+    \item We check now composition. Let \(\phi \in \mathrm{Hom}(F,G), \psi \in \mathrm{Hom}(G,H)\) be given. Then we have:
+      \begin{center}
+        \begin{tikzcd}
+          & F \drar{f_B} \dar{\phi} & \\
+          A \urar[leftarrow]{f_A} & G \lar{g_A} \rar{g_B} \dar{\psi} & B \dlar[leftarrow]{h_B}\\
+          & H \ular{h_A}&
+        \end{tikzcd}
+      \end{center}
+      But we know that the upper part of the diagram commutes since \(\phi\) is a morphism, and likewise for the bottom part of the diagram with \(\psi\). We want to show that the diagram
+      \begin{center}
+        \begin{tikzcd}[row sep = tiny]
+          & F \drar{f_B} \arrow[dd, "\psi \circ \phi"] & \\
+          A \urar[leftarrow]{f_A} &  & B \dlar[leftarrow]{h_B}\\
+          & H \ular{h_A}&
+        \end{tikzcd}
+      \end{center}
+      commutes, but this is immediate since we know that \(f_A = g_A \circ \phi\), but also \(g_A = h_A \circ \psi\), so \(f_A = h_A \circ \psi \circ \phi\), which is what we wanted to show. (Technically this is only half, but the \(B\) side follows identically).
+    \item The identity morphism is obviously just the identity inherited from \(\mathcal{C}\), namely, it is \(\mathrm{id}_Z \in \mathrm{Hom}_\mathcal{C}(Z, Z)\), the morphism which causes the diagram
+      \begin{center}
+        \begin{tikzcd}[row sep = tiny]
+          & Z \drar{z_B} \arrow[dd, "\text{id}_Z"] & \\
+          A \urar[leftarrow]{z_A} &  & B \dlar[leftarrow]{z_B}\\
+          & Z \ular{z_A}&
+        \end{tikzcd}
+      \end{center}
+      to commute.
+    \end{itemize}
+  \end{itemize}
+\item
+  \begin{proof}
+    Suppose that we have \(F, G \in \mathrm{Obj}(\mathcal{C})\) that are both final objects in \(\mathcal{C}\). Then, since \(F, G\) are final, then there exists unique morphisms \(f \in \mathrm{Hom}_\mathcal{C}(F, G),\ g \in \mathrm{Hom}_\mathcal{C}(G,F)\), and our goal is to show that the diagram
+    \begin{center}
+      \begin{tikzcd}
+        F \arrow[rr, leftarrow, bend left, "g"] & & G \arrow[ll, leftarrow, bend left, "f"]
+      \end{tikzcd}
+    \end{center}
+    commutes and namely that \(f\) undoes \(g\), and visa-versa.
+
+    In order to see this, recall that there must exist identity morphisms on \(F\) and \(G\), so then the diagram
+
+    \begin{center}
+      \begin{tikzcd}
+        F \arrow[r, "f"]& G \arrow[dr, "\text{id}_G"] \arrow[d, "g"]& \\
+        & F \arrow[ul, leftarrow, "\text{id}_F"] & G \arrow[l, leftarrow, "f"]
+      \end{tikzcd}
+    \end{center}
+    must commute with \(g \circ f = \mathrm{id}_F\) and \(f \circ g = \mathrm{id}_G\), so \(f\) and \(g\) are inverses, and so \(F\) and \(G\) are isomorphic.
+  \end{proof}
+\item The property aught to be that, for \(A, B, C, Z\in \mathrm{Obj}(\mathcal{C})\), \(A \times B \times C\) is terminal, and has projecitons into \(A, B,\) and \(C\) such that for any \(z_A: Z \to A\), \(z_B: Z \to B\), \(z_c: Z \to C\), there exists a unique \(\phi\) such that the \(z\)s factor through \(\phi\). In other words, there exists a unique \(\phi\) such that the diagram
+  \begin{center}
+    \begin{tikzcd}
+     & & Z \drar{z_B} \arrow[ddll, "z_A"] \arrow[dd, dashed,"\phi" description]& & \\
+     & & & B & \\
+     A & & A \times B \times C \urar[near end]{\pi_B} \arrow[ddr, "\pi_C" description] \arrow[ll, "\pi_A"] & & \\
+     & & & & \\
+     & & & C \arrow[uuuul, leftarrow, crossing over, near end,"z_C" description]& 
+    \end{tikzcd}
+  \end{center}
+  commutes.
+\item For each of \(p = 5, 7, 17\):
+  \begin{itemize}
+  \item [p = 5]: \((\Z / 5\Z)^* \cong \Z/4\Z\), so 2 generates the group
+  \item [p = 7]: \((\Z / 7\Z)^* \cong \Z/6\Z\), so 3 generates the group
+  \item [p = 17]: \((\Z / 17\Z)^* \cong \Z/16\Z\), so 3 generates the group
+  \end{itemize}
+\item Recall that the universal property of the free group tells us that for any group \(G\) and map \(f: A \to G\), there exists a unique \(\phi\) to make
+
+  \begin{center}
+    \begin{tikzcd}[row sep = tiny]
+      & F(A) \arrow[dd, dashed, "\phi"]\\
+      A \urar{j} & \\
+      & G \ular[leftarrow]{f}
+    \end{tikzcd}
+  \end{center}
+  So in particular, consider any group for which \(f\) can be made an injection. \((\R, +)\) will do. Then if \(f\) is an injection, then \(\phi \circ j\) must also be an injection, and thus \(j\) is an injection.
+\item Let arrows denote a subset (subgroup) relation. Then
+  \begin{center}
+    \begin{tikzcd}[column sep = tiny]
+      & \text{SL}_n(\C) \arrow[rr] \arrow[dd, leftarrow]& & \text{GL}_n(\C) \\
+      \text{SU}_n(\C) \urar \arrow[rr, crossing over] & & \text{U}_n(\C) \urar & \\
+      & \text{SL}_n(\R) \arrow[rr] & & \text{GL}_n(\R) \arrow[uu] \\
+      \text{SO}_n(\R) \arrow[uu] \urar \arrow[rr] & & \text{O}_n(\R) \arrow[uu, crossing over] \urar &
+    \end{tikzcd}
+  \end{center}
+  is a nice cube showing all inclusions. Now we move on to show that all these inclusions are subgroups... well, here we go I guess. We'll start at the bottom left corner, show that we have that \(\forall a, b \in H,\ ab\1 \in H\). Then, since \(\mathrm{GL}_n(\C)\) is a group, we'll get subgroup relations.
+  \begin{itemize}
+  \item [\(\mathrm{SO}_n(\R)\):] \(\forall Q, R \in \mathrm{SO}_n(\R)\), notice that \(QR\1 = QR^T\), but also \(QR^T*(QR^T)^T = QR^TRQ^T = I\), and also \(\det(QR^T) = 1\) by the multiplicative property of the determinant, so \(QR^T \in \mathrm{SO}_n(\R)\).
+  \item [\(\mathrm{O}_n(\R)\):] Follows directly from above.
+  \item [\(\mathrm{SU}_n(\C)\):] Replace the transposes above with the Hermitian adjoint and the proof is identical
+  \item [\(\mathrm{U}_n(\C)\):] Follows directly from above.
+  \item [\(\mathrm{SL}_n(\R)\):] Follows directly from the multiplicative property of the determinant, and the fact that \(\det(A\1) = \det(A)\1\), so \(\forall Q,R \in \mathrm{SL}_n(\R)\), \(QR\1\) has determinant \(1\), since \(Q\) and \(R\1\) each have determinant \(1\).
+  \item [\(\mathrm{SL}_n(\C)\):] Follows identically to above.
+  \item [\(\mathrm{GL}_n(\R)\):] replace ``has determinant 1'' in the \(\mathrm{SL}_n(\R)\) argument with ``has nonzero determinant'' and you're done.
+  \end{itemize}
+\item
+  \begin{proof}
+    Let \(h \in [G, G]\) be given. Then \(\forall g\in G\), \(g\1hg = h(h\1g\1hg) = h[h, g] \in [G, G]\), so \([G, G] \trianglelefteq G\). \partdone
+
+    Now we show that \(G/[G,G]\) is abelian. Let \(g[G, G] \in G/[G,G]\) and \(h[G, G] \in G/[G,G]\) be given. Then
+    \begin{align*}
+      gh[G,G] = gh[h,g][G,G] = ghh\1g\1hg[G,G] = hg[G,G]
+    \end{align*}
+    so \(G/[G,G]\) is commutative.
+  \end{proof}
+\item
+  \begin{proof}
+    I give no quarter to the abelian nature of the group, and appeal to Sylow's first theorem. Since \(n\) is odd, the multiplicity of \(2\) in the order of the group is \(1\), so there exists a Sylow 2-subgroup of \(G\), and thus an element of order \(2\). Now suppose for the sake of contradiction that there exists more than 1 element of order 2. Then the subgroup generated by these two elements is the Vierergruppe, which has order 4, but \(4 \nmid 2n\), since \(n\) is odd, so Lagrange tells us that there can't be more than one element of order 2.
+  \end{proof}
+\item
+  \begin{itemize}
+  \item We first show \(G^\circ\) is a group:
+    \begin{itemize}
+    \item \textbf{(Associative)}: Inherited from \(G\)
+    \item \textbf{(Identity)}: Identities are two-sided anyway in groups, so the identity from \(G\) works.
+    \item \textbf{(Inverses)}: Again, inverses are two-sided, so inverses in \(G^\circ\) are the same as inverses in \(G\)
+    \end{itemize}
+  \item
+    \begin{proof}
+      First notice that \(\mathrm{id}\) is bijective regardless of our assumption.
+      \begin{itemize}
+      \item [(\(\Leftarrow\))] Suppose that \(G\) is commutative. Then
+        \begin{align*}
+          \mathrm{id}(g \circ h) &= g \circ h \\
+                                 &= h \times g \\
+                                 &= \mathrm{id}(h) \times \mathrm{id}(g) \\
+                                 &= \mathrm{id}(g) \times \mathrm{id}(h).
+        \end{align*}
+        so \(\mathrm{id}\) is a homomorphism, and thus an isomorphism. \partdone
+      \item [\((\Rightarrow)\)] Suppose now that \(\mathrm{id}\) is an isomorphism. Then in particular
+        \begin{align*}
+          \mathrm{id}(g \circ h) &= g \times h \\
+                                 &= h \circ g \\
+                                 &= \mathrm{id}(h \circ g) \\
+                                 &= h \times g
+        \end{align*}
+        so we have commutativity. \kmd{If there's anything on this assignment that I don't believe, it's this.}
+      \end{itemize}
+    \end{proof}
+  \item
+    \begin{proof}
+      We give the isomorphism explicitly. Take \(\iota: G^\circ \to G\) be the map that takes \(g \longmapsto g\1\). Now in the language of group actions, \(\iota\) is a permutation, and thus a bijection. \partdone
+      
+      Now we check that this is actually a homomorphism:
+      \begin{align*}
+        \iota(g \circ h) &= (g \circ h)\1 \\
+                         &= h\1 \circ g\1 \\
+                         &= g\1 \times h\1 \\
+                         &= \iota(g) \times \iota(h)
+      \end{align*}
+      So we have an isomorphism.
+    \end{proof}
+  \item If we have an action \(G\) acting on \(X\) on the right via \((\cdot)\), then define \(g \cdot x := x \cdot g\1\). Notice that this works because \(g \cdot (h \cdot x) = g \cdot (x \cdot h\1) = (x \cdot h\1) \cdot g\1\). But since we already know that the right action is compatible, we get that this equals \((x \cdot h\1g\1) = (x\cdot (gh)\1) = gh \cdot x\).
+  \end{itemize}
+\end{enumerate}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
