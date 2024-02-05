@@ -1,0 +1,123 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\usepackage{marvosym}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 245} \hfill \textbf{} \\
+\textbf{Kyle Dituro} \hfill \textbf{February 5\tht, 2024}\hrule
+\vspace{.2in}
+
+\section{What's a Ring}
+I dunno.
+
+\begin{df}
+  A ring \((R, +, \cdot)\) is an abelian group \((R, +)\) along with a second binary operation \((\cdot)\) which is associative and distributive over addition. (and with \(1\)).
+\end{df}
+
+\begin{notn}
+  Call the additive identity \(0\) and the multiplicative identity 1.
+\end{notn}
+
+\begin{prop}
+  \(\forall r \in R\),
+  \begin{align*}
+    r \cdot 0 = 0 \cdot r = 0 \\
+    r \cdot 0 = r\cdot (0 + 0) = r \cdot 0 + r \cdot 0 \\
+    \Rightarrow r \cdot 0 = 0
+  \end{align*}
+\end{prop}
+
+\begin{fact}
+  The additive inverse of \(r\) is \((-1 \cdot r)\)
+\end{fact}
+
+We sure are doing rings here. Man I love rings. Also, I learned about a new \LaTeX package, check this out:
+{\huge \fax\ \fax\ \fax} We've even got \Faxmachine\ and \FAX. lol.
+
+So anyway:
+
+\begin{df}
+  We say a ring has \textit{multiplicative cancellation} if \(\forall b \neq 0\) and \(a \cdot b = c \cdot b\) then \(a = c\).
+\end{df}
+\begin{exa}
+  This isn't always true. In fact, notice \(\Z/ 6\Z\) does not have multiplicative cancellation.
+\end{exa}
+
+\begin{df}
+  \(a \in R\) is a \textit{zero divisor} if \(\exists b \in R, b\neq 0\) such that \(a\cdot b = 0\)
+\end{df}
+
+\begin{prop}[The worst proposition]
+  \(a \in R\) is not a zero divisor iff \(a:R \to R\) by \(a(b) = a \cdot b\) s injective.
+\end{prop}
+
+
+\begin{df}
+  An \textit{integral domain} is a non-zero commutative ring without zero divisors.
+\end{df}
+
+So which cyclic rings are integral domains? Well notice that when \(n\) is nonprime, \(\Z/n\Z\) is not an integral domain.
+
+Now let's look at some really wacky rings.
+
+\begin{exa}
+  Take \(S\) a set, and let \(\mathcal{P}(S)\) be the power set of \(S\). We can make this a ring with \(A \cup B \setminus (A \cap B)\) as addition. Then the additive identity of this ring is the empty set, and a set's inverse is the set complement.
+
+  Then we define multiplication (which will also turn out to be commutative) as \(A \cdot B = A \cap B\), whose identity is the whole set, and whose distributativity is a bit trick to prove.
+
+  \textbf{Hint:} Try drawing a Venn diagram or two.
+\end{exa}
+
+Here's another nasty one:
+
+\begin{exa}
+  Let \(R\) be a ring, and \(S\) be a set.
+
+  Then \(R^S\) is the function ring of functions \(S \to R\), with \((f + g)(s) = f(s) + g(s)\) and \((f \cdot g)s = f(s)g(s)\). Then the additive identity is : \(f(s) = 0_R\) and multiplicative is \(f(s) = 1_R\). Then this ring has zero divisors in the form of function pairs which take a nonzero value whenever the other takes zero.
+\end{exa}
+
+Then something is a (left or right) unit if \(\exists v\) such that \(u \cdot v = 1\) (or visa-versa). A division ring is is a ring where every non zero element is a two sided unit.
+
+\begin{df}
+  A \textit{Field} is a non zero commutative ring where every nonzero element is a unit.
+\end{df}
+
+\section{Polynomial Rings}
+
+Let \(R\) be a ring. then \(R[x]\) is the set of polynomials in indeterminate \(x\) (consider only polynomials with finitely many terms). Then if \(f = \sum a_ix^i\) and \(g = \sum b_ix^i\), then \(f + g = \sum(a_i + b_i)x^i\), and \(fg = \sum_{k \in \N}\sum_{i + j}a_ib_jx^k\). This is a ring. Have fun checking this you fucks lmao. Now in the same vein, \(R[[x]]\) is the ring of formal power series in \(R\).
+
+\section{Ring Homomorphisms}
+
+\begin{df}
+  A \textit{homomorphism of rings} is a map \(\phi\) which is homomorphic on both the addition and the multiplication, and takes the identity of one category to the other.
+\end{df}
+
+And naturally an isomorphism is a homomorphism with rings.
+
+Now we can talk about the category or rings, RING. thank god. Then in this category, \(\Z\) is initial. namely, we can construct a homomorphism \(\Z \to R\) which maps \(1 \mapsto 1_R\), \(-1 \mapsto -1_R\), and \(m \mapsto \underbrace{1_R + \ldots + 1_R}_{m\ \mathrm{times}} = m1_R\). Notice that the additive homomorphism falls out trivially. Then in order to get multiplication in general, we need to get that
+\begin{align*}
+  \phi(m)\phi(n) &= m1_R \cdot n1_R \\
+                 &= m \cdot n 1_R 1_R = mn 1_R \\
+                 &=\phi(m \cdot n).
+\end{align*}
+
+\begin{cor}
+  Ring homomorphisms take units to units.
+\end{cor}
+
+Now we give a particularly interesting example, despite the fact that rings on their own are boring as shit.
+
+\begin{exa}
+  \(\Z[X_1, \ldots, X_n]\), the set of polynomials in some number \(n\) of indeterminants, is the analogue of free groups. And in particular this can be verified using the category \(\mathcal{R}_A\).
+\end{exa}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
