@@ -25,10 +25,10 @@ Notice also that \(\mathcal{H}\) is a division ring, and that in particular \(\v
 
 \section{Subrings and Ideals}
 \begin{note}
-  I didn't typeset the extended discussion of polynomial rings. It's mostly a trivial construction in the category \(\mathcal{R}_A\). However, there is the interesting idea of indexing sums to represent polynomials in arbitrarily many variables. It's worth noting for that a polynomial in \(\frac{k[X_1, \ldots X_n]}{\langle X_1^d, \ldots, X_n^d \rangle}\), you will be able to index your sum over the partitions of \(d\), so we can notice that there are precisely \(\choose{d-1}{n-1}\) terms in the sum. 
+  I didn't typeset the extended discussion of polynomial rings. It's mostly a trivial construction in the category \(\mathcal{R}_A\). However, there is the interesting idea of indexing sums to represent polynomials in arbitrarily many variables. It's worth noting for that a polynomial in \(\frac{k[X_1, \ldots X_n]}{\langle X_1^d, \ldots, X_n^d \rangle}\), you will be able to index your sum over the partitions of \(d\), so we can notice that there are precisely \(\choose{n + d}{n + 1}\) terms in the sum. 
 \end{note}
 
-As we always do when studying a thing in math, we've studied morphisms betewen these things, so now we'll talk about substructure.
+As we always do when studying a thing in math, we've studied morphisms between these things, so now we'll talk about substructure.
 \begin{df}
   A \textit{subring} of a ring \(R\) is a subset of \(R\) which inherits the ring structure and \(S \hookrightarrow R\) is a homomorphism
 \end{df}
@@ -53,7 +53,7 @@ Cayley's theorem, which states that every group is a subgroup of a symmetric gro
   Let \(R\) be a ring. Then \(r \xmapsto{\lambda} \lambda_r\) is an injective ring homomorphism.
 \end{thm}
 
-The proof of this statement is actually just boiling down to chcking that the map is indeed an injective homomorphism. Nothing new. We've admitted it.
+The proof of this statement is actually just boiling down to checking that the map is indeed an injective homomorphism. Nothing new. We've admitted it.
 
 \subsection{Ideals}
 Ideals are the analogue of normal subgroups for rings.
@@ -90,14 +90,14 @@ We define a quotient ring in the same way that we define quotient groups on grou
   \end{align*}
 \end{df}
 
-Showing that ths is well defined is no trick.
+Showing that this is well defined is no trick.
 
 Suppose that \(r_1 - r_2 \in I,\) and \(s_1 - s_2 \in I\), in other words, \(r_1\) and \(r_2\) are in the same coset of our ideal (and for \(s\)). Then consider \(r_1s_1 - r_2s_2 = r_1(s_1 - s_2) + (r_1 - r_2)s_2\), so we have well definedness.
 
 \begin{exa}
   \(\Z / n\Z\) is a ring.
 
-  Consider the cannonical map
+  Consider the canonical map
   \begin{align*}
     \Z \to R \\
     n \mapsto \underbrace{1_R + \ldots + 1_R}_{n\ \mathrm{times}}
