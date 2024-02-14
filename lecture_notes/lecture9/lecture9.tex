@@ -10,17 +10,138 @@
 \section{More about Ideals}
 We begin with a discussion of prime and maximal ideals. All rings here are commutative with 1.
 
-\begin{df}
-  For some ideal \(I \neq \langle 1 \rangle\), \(I\) is a \textit{prime} ideal if \(R/I\) is an integral domain.
-
-  \(I\) is \textit{maximal} if \(R/I\) is a field.
+\begin{df}\label{MaxPrimeDf}
+  For some ideal \(I \neq \langle 1 \rangle\), \(I\) is...
+  \begin{enumerate}
+  \item a \textit{prime} ideal if \(R/I\) is an integral domain.
+  \item a \textit{maximal} if \(R/I\) is a field.
+  \end{enumerate}
 \end{df}
 
 \begin{exa}
   In \(R[x]\), \((x-a)\) is prime iff \(R\) is an integral domain, and maximal iff \(R\) is a field. This comes directly from the fact that \(R[x]/\langle x-a \rangle \cong R\)
 \end{exa}
 
-You might notice that the definitions above aren't the ones that are normally given for prime and maximal ideals. The normal definitions are that \(I\) being prime iff \(\forall ab \in I\), either \(a\in I\) or \(b \in I\), and \(I\) is maximal iff \(\forall\) ideals \(J\) of \(I\), \(I \subseteq J \Rightarrow I = J\) or \(J = R\). The equivalence of these definitions is an easy exercise and can be verified quickly.
+You might notice that the definitions above aren't the ones that are normally given for prime and maximal ideals. The normal definitions are given as theorems now.
+
+\begin{thm}\label{MaxPrimeThm}
+  An ideal \(I\) of \(R\) is...
+  \begin{enumerate}
+  \item Prime iff \(\forall ab \in I\), either \(a\in I\) or \(b \in I\)
+  \item Maximal iff \(\forall\) ideals \(J\) of \(I\), \(I \subseteq J \Rightarrow I = J\) or \(J = R\).
+  \end{enumerate}
+
+\end{thm}
+
+The equivalence of these definitions is an easy exercise and can be verified quickly given the following lemma:
+
+\begin{lm}
+  A ring \(R\) is a field iff its only ideals are \((0)\) and \((1)\).
+\end{lm}
+\begin{proof}
+  \begin{enumerate}
+  \item [(\(\Rightarrow\))] Let \(R\) be a field and let some ideal \(I \neq 0\) be given, then there is some \(a \in R\). Then \(ra \in I\), so \(a\1a \in I\), thus \(I = \langle 1 \rangle = R\).
+  \item [(\(\Leftarrow\))] The only ideals here are \(\langle 0 \rangle\) and \(\langle 1 \rangle\). Then suppose \(a \neq 0\), then \(\langle a \rangle = R = \langle 1 \rangle\), so \(ra = 1\) for some \(r \in R\).
+  \end{enumerate}
+\end{proof}
+
+Okay I lied we also need this proposition
+
+\begin{prop}
+  \(J/I\) is an ideal of \(R/I\) iff \(J\) is an ideal of \(R\) that contains \(I\).
+\end{prop}
+
+But that's easy.
+
+\begin{exr}
+  The definitions in Definition (\ref{MaxPrimeDf}) are equivalent to the conditions given in Theorem (\ref{MaxPrimeThm}).
+\end{exr}
+
+It should be easy to see that being a maximal ideal is a stronger condition then being prime, after all, begin a field is stronger than being an integral domain.
+
+\begin{cor}
+  If \(I\) is a (commutative) ring \(R\), and \(R/I\) is finite, \(I\) is prime iff \(I\) is maximal.
+\end{cor}
+
+Now we give a definition that is very important, but to be perfectly honest I'm not sure why we're giving it here...
+\begin{df}
+  The \textit{prime spectrum} of a ring \(R\) is the set of all prime ideals.
+\end{df}
+
+And we give another condition for primity and maximality.
+
+\begin{prop}
+  Let \(R\) be a P.I.D., and let \(I\) be a nonzero ideal. Then \(I\) is prime iff \(I\) is maximal
+\end{prop}
+
+Notice that one direction of this, namely \((\Leftarrow)\) is trivial. The other direction is also easy, but not trivial.
+
+Now here's a bit of a digression that pertains to the prime spectrum of a ring. The \textit{Krull dimension}  of a ring is the length of the longest chain of prime ideals strictly contained in \(R\).
+
+\section{Exam Topics}
+Here is a list of things that will (potentially) be on the exam.
+\begin{itemize}
+\item Groups:
+  \begin{itemize}
+  \item Free groups and group presentations,
+  \item Group action group acting on itself
+  \item Orbit-stabilizer theorem
+  \item The class equation
+  \item Sylow's theorems
+  \item Quotients (and normal subgroups)
+  \item Some universal properties of groups (will almost certainly be very minimal)
+  \item products, 
+  \item Lagrange and Cauchy's theorem
+  \item \(\mathrm{End}_{\mathrm{Ab}}(G)\)
+  \end{itemize}
+\item Rings:
+  \begin{itemize}
+  \item Fuck-you amounts of definitions. 
+  \item Ideals, prime, maximal and so on.
+  \item More quotients
+  \item Polynomial rings and their quotients (and long division)
+  \item \(\mathbb{H}\).
+  \item Isomorphism theorem
+  \end{itemize}
+\end{itemize}
+
+That's most (if not all) of what will be on the test. Now moving on.
+
+\section{Modules}
+
+Roughly, an \(R\)-module is an abelian group \(M\) with an action of \(R\). In other words, we have a map
+
+\begin{align*}
+  \sigma: R \to \mathrm{End}_{\mathrm{Ab}}(M)
+\end{align*}
+
+More precisely,
+
+\begin{df}
+  A (left) \textit{\(R\)-module} structure on an abelian group \(M\) is a map
+  \begin{align*}
+    R \times M \to M \\
+    (r,m) \mapsto rm
+  \end{align*}
+  such that
+  \begin{itemize}
+  \item \(r(m + n) = rm + rn\) 
+  \item \((r + s)m = rm + sm\)
+  \item \((rs)m = r(sm)\)
+  \item \(1m = m\)
+  \end{itemize}
+\end{df}
+
+Here's some properties that we will almost definitely have to prove later:
+
+\begin{itemize}
+\item \(0_R(m) = 0\)
+\item \(-1_Rm = -m\)
+\end{itemize}
+
+\begin{exa}
+  Every abelian group is a \(\Z\) module.
+\end{exa}
 \end{document}
 %%% Local Variables:
 %%% mode: latex
