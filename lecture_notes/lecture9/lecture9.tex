@@ -1,0 +1,33 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 245} \hfill \textbf{Genevieve Walsh} \\
+\textbf{Kyle Dituro} \hfill \textbf{February 14\tht, 2024}\hrule
+\vspace{.2in}
+
+\section{More about Ideals}
+We begin with a discussion of prime and maximal ideals. All rings here are commutative with 1.
+
+\begin{df}
+  For some ideal \(I \neq \langle 1 \rangle\), \(I\) is a \textit{prime} ideal if \(R/I\) is an integral domain.
+
+  \(I\) is \textit{maximal} if \(R/I\) is a field.
+\end{df}
+
+\begin{exa}
+  In \(R[x]\), \((x-a)\) is prime iff \(R\) is an integral domain, and maximal iff \(R\) is a field. This comes directly from the fact that \(R[x]/\langle x-a \rangle \cong R\)
+\end{exa}
+
+You might notice that the definitions above aren't the ones that are normally given for prime and maximal ideals. The normal definitions are that \(I\) being prime iff \(\forall ab \in I\), either \(a\in I\) or \(b \in I\), and \(I\) is maximal iff \(\forall\) ideals \(J\) of \(I\), \(I \subseteq J \Rightarrow I = J\) or \(J = R\). The equivalence of these definitions is an easy exercise and can be verified quickly.
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
